@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <ul>
+            <% data.forEach(function(data) { %>
+                <li>
+                    <strong><%= data.name %></strong>
+                    representing <%= data.email %>
+                </li>
+            <% }); %>
+        </ul>
+    </body>
+</html>

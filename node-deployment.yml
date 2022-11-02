@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+  labels:
+    app: node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - name: node
+        image: imed1/node-app
+        ports:
+          - containerPort: 3002
+        env:
+          - name: DB_SERVER
+            value: mysql-st-0.mysql
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: ROOT_PASSWORD
+          - name: DB_NAME
+            value: "mysql"
+          - name: PORT
+            value: "3306"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-svc
+spec:
+  type: LoadBalancer
+  selector: 
+    app: node-app
+  ports:
+    - name: tcp
+      protocol: TCP
+      port: 3302
+      targetPort: 3002
