@@ -37,7 +37,7 @@ kind: Service
 metadata:
   name: node-svc
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector: 
     app: node-app
   ports:

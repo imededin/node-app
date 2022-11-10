@@ -3,7 +3,7 @@ const con = mysql.createConnection({
   host: process.env.DB_SERVER||'localhost',
   port: process.env.PORT||'3306',
   user: process.env.USER1||'root',
-  password: process.env.PASSWORD||'admin',
+  password: process.env.PASSWORD||'root',
   database: process.env.DB_NAME||'mysql'
 });
 con.connect(function(err) {

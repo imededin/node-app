@@ -7,6 +7,6 @@ const wiki_contrl=require("../controllers/costumer-controller")
 // Home page route.
 router.get("/customers",wiki_contrl.list_customers)
 router.post('/add',wiki_contrl.customer_add)
-router.get("/",wiki_contrl.index)
+router.get("/bla",wiki_contrl.index)
 
 module.exports = router;

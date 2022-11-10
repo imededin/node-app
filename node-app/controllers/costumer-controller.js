@@ -10,12 +10,12 @@ exports.customer_add=(req,res)=>{
     });
 }
 exports.index=(req,res)=>{
-    res.sendFile(path.join(__dirname,'../views/index.html'))
+    res.send("hello");
 }
 exports.list_customers=(req,res)=>{
   var sql="select * from customers"
   con.query(sql,function(err,data){
     if (err) throw err;
-    res.render("customers",{data:data})
+    res.send(data)
   })
 }
