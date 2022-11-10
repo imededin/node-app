@@ -1,0 +1,27 @@
+pipeline{
+    agent any
+    stages{
+        stage("fetch"){
+            steps{
+                git credentialsId: 'github-credentiels', url: 'https://github.com/imededin/node-app.git'
+
+            }
+        }
+        stage("build"){
+            steps{
+                docker build -t imed1/node-app ./node-app
+                docker build -t imed1/client ./client
+            }
+        }
+        stage ("push images"){
+            steps{
+               withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    docker login -u $USER -p $PASS
+                    docker push imed1/client
+                    docker push imed1/node-app
+    // some block
+                    }
+            }
+        }
+    }
+}
