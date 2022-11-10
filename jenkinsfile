@@ -9,16 +9,16 @@ pipeline{
         }
         stage("build"){
             steps{
-                docker build -t "imed1/node-app" ./node-app
-                docker build -t "imed1/client" ./client
+                sh "docker build -t imed1/node-app ./node-app"
+                sh "docker build -t imed1/client ./client"
             }
         }
         stage ("push images"){
             steps{
                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                    docker login -u $USER -p $PASS
-                    docker push "imed1/client"
-                    docker push "imed1/node-app"
+                    sh "docker login -u $USER -p $PASS"
+                    sh "docker push imed1/client"
+                    sh " docker push imed1/node-app"
     // some block
                     }
             }
