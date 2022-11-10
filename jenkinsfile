@@ -23,5 +23,18 @@ pipeline{
                     }
             }
         }
+        stage("deploy images with kubernetes"){
+            steps{
+            sh "kubectl apply -f secret.yml"
+            sh "kubectl apply -f mysql.yml"
+            sh "kubectl apply -f node-deployment.yml "
+            sh "kubectl apply -f client.yml"
+        }
+        }
+        stage("get svc  "){
+            steps{
+                sh "kubectl get svc"
+            }
+        }
     }
 }
