@@ -1,11 +1,7 @@
 const mysql = require('mysql2');
-const con = mysql.createConnection({
-  host: process.env.DB_SERVER||'localhost',
-  port: process.env.PORT||'3306',
-  user: process.env.USER1||'root',
-  password: process.env.PASSWORD||'root',
-  database: process.env.DB_NAME||'mysql'
-});
+
+const dbUrl =  process.env.DB_URL ||"mysql://127.0.0.1:3306/test"
+const con = mysql.createConnection(dbUrl);
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
