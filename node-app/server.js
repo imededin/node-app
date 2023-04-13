@@ -33,8 +33,6 @@ var con=require("./models/db.js")
 
 
 
-// server.listen(3002,function(){ 
-//     console.log("Server listening on port: 3002")});
 
 
 const express = require("express");
@@ -56,7 +54,7 @@ app.use(cors({
      //res.send([{name:"imed",email:"imed@node"}]);
      //});
 
-app.get("/",function(req,res){
+app.get("/api",function(req,res){
     res.send([{name:"imed",email:"imed@node"}])
 })
 
